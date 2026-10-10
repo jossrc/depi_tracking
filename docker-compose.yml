@@ -1,0 +1,28 @@
+services:
+  depi_tracking_api:
+    build: .
+    container_name: depi_tracking_api
+    ports:
+      - "8271:8271"
+    environment:
+      - NODE_ENV=production
+      - HOST=${HOST}
+      - PORT=8271
+      - LOG_LEVEL=info
+      - DB_PORT_MYSQL=${DB_PORT_MYSQL}
+      - DB_HOST_MYSQL=${DB_HOST_MYSQL}
+      - DB_USER_MYSQL=${DB_USER_MYSQL}
+      - DB_PASS_MYSQL=${DB_PASS_MYSQL}
+      - DB_NAME_MYSQL=${DB_NAME_MYSQL}
+      - DATABASE_POOL_MAX=${DATABASE_POOL_MAX}
+      - DATABASE_CONNECTION_TIMEOUT_MS=${DATABASE_CONNECTION_TIMEOUT_MS}
+      - DATABASE_IDLE_TIMEOUT_MS=${DATABASE_IDLE_TIMEOUT_MS}
+      - DATABASE_SYNC_ALTER=${DATABASE_SYNC_ALTER}
+      - DATABASE_LOGGING=${DATABASE_LOGGING}
+      - DEPI_TRACK_AUTOGES_API_KEY=${DEPI_TRACK_AUTOGES_API_KEY}
+    networks:
+      - depi_tracking_api_net
+
+networks:
+  depi_tracking_api_net:
+    driver: bridge
